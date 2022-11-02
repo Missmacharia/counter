@@ -1,17 +1,22 @@
 import React from 'react'
 import { useEffect } from 'react'
-const Increment = ({count, setCount}) => {
+const Increment = ({setCount}) => {
     // const handleIncrementClick=()=>{
     //     setCount(prev=>prev+1)
     // }
-    useEffect(()=>{
-        setInterval(()=>{
-            setCount((prev)=>prev+1)
+    let interval;
+    const handleIncrementClick=(()=>{
+       interval= setInterval(()=>{
+            setCount((prev)=>prev +1)
         },1000)
-    });
+    })
+    useEffect(()=>{
+        handleIncrementClick()
+        return()=>clearInterval(interval)
+    },[] )
   return (
     <div>
-      <button count={count} >Increase</button>
+      {/* <button count={count} >Increase</button> */}
     </div>
   )
 }
